@@ -24,10 +24,7 @@ const Navbar: React.FC = () => {
             .join(' ');
     };
 
-     const handleLanguageChange = useCallback((e: React.ChangeEvent<HTMLSelectElement>) => {
-        i18next.changeLanguage(e.target.value);
-        router.replace(router.asPath) // this is only to manually force re-render if something goes wrong.
-    }, [router]);
+
 
     return (
         <header
