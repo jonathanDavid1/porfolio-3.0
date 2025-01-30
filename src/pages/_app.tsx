@@ -1,6 +1,15 @@
-import "@/styles/globals.css";
-import type { AppProps } from "next/app";
+// src/pages/_app.tsx
+import '@/styles/globals.css';
+import type { AppProps } from 'next/app';
+import { appWithTranslation } from 'next-i18next';
+import { ThemeProvider } from '@/ThemeContext';
 
-export default function App({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />;
+function MyApp({ Component, pageProps }: AppProps) {
+    return (
+        <ThemeProvider> {/* Wrap your application */}
+            <Component {...pageProps} />
+        </ThemeProvider>
+    );
 }
+
+export default appWithTranslation(MyApp);

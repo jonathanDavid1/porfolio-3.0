@@ -1,0 +1,13 @@
+{
+    "home": "Home",
+   "projects": "Projects",
+    "contact": "Contact",
+   "email": "Email",
+   "github": "GitHub",
+      "whatsapp": "WhatsApp",
+     "my_skills": "My Skills",
+    "technical_skills": "Technical Skills",
+     "soft_skills": "Soft Skills",
+     "darkMode":"Dark Mode",
+    "lightMode": "Light Mode"
+    }

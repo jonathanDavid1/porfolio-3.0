@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import React from 'react';
 import {
     FaReact,
@@ -19,10 +19,10 @@ import {
      SiExpress,
   } from 'react-icons/si';
   import { MdOutlineSettingsInputSvideo } from "react-icons/md";
+  import { useTheme } from '@/ThemeContext';
 
-interface SkillsProps {}
-
-const Skills: React.FC<SkillsProps> = () => {
+const Skills: React.FC = () => {
+  const { isDarkMode } = useTheme();
 
     const skillsData = {
         title: 'Habilidades',
@@ -107,24 +107,24 @@ const Skills: React.FC<SkillsProps> = () => {
        }
    };
 
-   return (
-    <section id="skills" className="my-8 animate-fade-in">
-      <h2 className="text-2xl font-semibold mb-4 text-text-DEFAULT">{(skillsData.title)}</h2>
-      {skillsData.skills?.map((skillGroup, index) => (
-        <div key={index} className="mb-6">
-          <h3 className="text-xl font-medium mb-2 text-text-DEFAULT">{(skillGroup.category)}</h3>
-          <ul className="flex flex-wrap gap-2">
-              {skillGroup.items.map((item, itemIndex) => (
-                <li key={itemIndex} className="bg-gray-100 rounded-md py-1 px-2 text-gray-700 hover:bg-gray-200 transition-colors duration-200 flex items-center gap-2">
-                     {getIcon(item)}
-                    {item}
-                 </li>
-                ))}
-          </ul>
-        </div>
-      ))}
-    </section>
-  );
+    return (
+      <section id="skills" className="my-8 animate-fade-in">
+        <h2 className={`text-2xl font-semibold mb-4 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>{skillsData.title}</h2>
+        {skillsData.skills?.map((skillGroup, index) => (
+          <div key={index} className="mb-6">
+            <h3 className={`text-xl font-medium mb-2 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>{skillGroup.category}</h3>
+            <ul className="flex flex-wrap gap-2">
+                {skillGroup.items.map((item, itemIndex) => (
+                  <li key={itemIndex} className={`rounded-md py-1 px-2 flex items-center gap-2 transition-colors duration-200 ${isDarkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}`}>
+                       {getIcon(item)}
+                      {item}
+                   </li>
+                  ))}
+            </ul>
+          </div>
+        ))}
+      </section>
+    );
 };
 
 export default Skills;
