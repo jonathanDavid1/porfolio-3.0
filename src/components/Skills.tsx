@@ -25,10 +25,10 @@ const Skills: React.FC = () => {
   const { isDarkMode } = useTheme();
 
     const skillsData = {
-        title: 'Habilidades',
+        title: 'Skills',
         skills: [
             {
-                category: 'Habilidades de Desarrollo Web',
+                category: 'Web Development Skills',
                 items: [
                     'HTML5',
                     'CSS3',
@@ -50,7 +50,7 @@ const Skills: React.FC = () => {
                 ],
             },
             {
-                category: 'Habilidades de Análisis de Datos y Machine Learning',
+                category: 'Data Analysis and Machine Learning Skills',
                 items: [
                     'Python (Pandas, NumPy, Matplotlib, Seaborn)',
                     'Google Colab',
@@ -59,7 +59,7 @@ const Skills: React.FC = () => {
                 ],
             },
             {
-                category: 'Otras Habilidades Técnicas',
+                category: 'Other Technical Skills',
                 items: [
                     'Java',
                     'C++',

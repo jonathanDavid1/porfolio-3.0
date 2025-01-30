@@ -2,12 +2,10 @@
     "home": "Inicio",
     "projects": "Proyectos",
     "contact": "Contacto",
-     "email": "Correo",
-     "github": "GitHub",
-     "whatsapp": "WhatsApp",
-     "my_skills": "Mis Habilidades",
-      "technical_skills": "Habilidades Técnicas",
-     "soft_skills": "Habilidades Blandas",
-    "darkMode":"Modo Oscuro",
-    "lightMode": "Modo Claro"
-    }
+     "intro_description": "Desarrollador Web Full Stack con experiencia en la creación de aplicaciones web interactivas y un sólido conocimiento en análisis de datos, además de un alto dominio del inglés. Comprometido con el aprendizaje continuo, me mantengo actualizado en las últimas tendencias tecnológicas y me apasiona la creación de experiencias web excepcionales.",
+    "download_cv": "Descargar CV",
+    "skills": "Habilidades",
+    "ready": "¿Listo para Transformar tu Presencia Digital?",
+    "boost": "Impulsa el crecimiento de tu empresa con un desarrollador web que te ofrece soluciones sólidas, con diseños impecables y con una visión estratégica del análisis de datos. Sé parte de la transformación digital, lidera el mercado con una presencia web que marque la diferencia, explora mi trabajo.",
+     "explore": "Explorar Mi Trabajo"
+}

@@ -9,33 +9,33 @@ const Projects: React.FC = () => {
     const projects = [
         {
             title: "Serendicus",
-            description: "Mi portafolio web personal, donde muestro mis habilidades y proyectos.",
+            description: "Serendicus is a project created in Next.js where I showcase beautiful places in the area where I live and promote properties for sale.",
             imageUrl: "/serendicus.png",
-            projectUrl: "https://jonathan-hernandez-porfolio.netlify.app/",
+            projectUrl: "https://serendicus.com/",
             githubUrl: "https://github.com/jonathanDavid1/my-portafolio",
-            technologies: ["Next.js", "Tailwind CSS", "React", "JavaScript", "TypeScript", "Node.js", "MongoDB"]
+            technologies: ["Next.js", "Tailwind CSS", "React", "JavaScript", "TypeScript", "GitHub", "Git", "Netlify","SEO"]
         },
         {
             title: "POKEDEX",
-            description: "Una aplicación de tareas para organizar y gestionar las tareas diarias.",
+            description: "Pokedex is a webpage created with React.js where you can find all the Pokémon and their characteristics.",
             imageUrl: "/pokedex.png",
-           projectUrl: "https://pokedexwithreactandredux.netlify.app/",
+           projectUrl: "https://pokedexwithreactandredux.netlify.app/pokedex",
             githubUrl: "https://github.com/jonathanDavid1/mi-aplicacion-de-tareas",
             technologies: ["React", "Node.js", "MongoDB", "Express"],
         },
         {
            title: "Web de Ecommerce",
-            description: "Una web de comercio electrónico con la que simulo una web real.",
+            description: "An ecommerce created with Vanilla JS where you can purchase a wide variety of shirts.",
             imageUrl: "/ecommerce.png",
             projectUrl: "https://carrito-de-compras-colombia.netlify.app/#",
             githubUrl: "https://github.com/jonathanDavid1/mi-web-ecommerce",
             technologies: ["Next.js", "Tailwind CSS", "React", "Strapi"],
         },
         {
-          title: "Analisis de datos con Python",
-             description: "Un proyecto de analisis de datos usando librerías de Python.",
+          title: "Data Analysis with Python",
+             description: "A data analysis project using Python libraries.",
            imageUrl: "/matplot.png",
-            projectUrl: "https://mi-analisis-de-datos.com",
+            projectUrl: "https://colab.research.google.com/drive/1KQplG7yKFuTgjfIPygNfcOBAstqN72jg",
            githubUrl: "https://github.com/jonathanDavid1/mi-analisis-de-datos",
             technologies: ["Python", "Pandas", "NumPy", "Matplotlib", "Seaborn"],
         },
@@ -43,7 +43,7 @@ const Projects: React.FC = () => {
 
     return (
         <section id="projects" className="my-8">
-            <h2 className={`text-2xl font-semibold mb-4 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>Proyectos</h2>
+            <h2 className={`text-2xl text-center font-semibold mb-4 ${isDarkMode ? 'text-white' : 'text-gray-900' }`}>Projects</h2>
             <div className="md:grid md:grid-cols-2 md:gap-6">
                 {projects.map((project, index) => (
                     <ProjectCard key={index} {...project} />

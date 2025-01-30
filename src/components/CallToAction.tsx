@@ -12,10 +12,10 @@ const CallToAction: React.FC = () => {
     return (
         <section className="my-16 text-center animate-fade-in">
             <h2 className={`text-3xl font-bold mb-6 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
-                ¿Listo para Transformar tu Presencia Digital?
+            Ready to Transform Your Digital Presence
             </h2>
             <p className={`text-lg mb-10 text-left ${isDarkMode ? 'text-gray-200' : 'text-gray-600'}`}>
-            Impulsa el crecimiento de tu empresa con un desarrollador web que te ofrece soluciones sólidas, con diseños impecables y con una visión estratégica del análisis de datos. Sé parte de la transformación digital, lidera el mercado con una presencia web que marque la diferencia, explora mi trabajo.
+            Boost your company's growth with a web developer that offers you solid solutions, with impeccable designs, and a strategic vision of data analysis. Be part of the digital transformation, lead the market with a web presence that makes a difference, explore my work.
             </p>
             <div className="flex flex-col md:flex-row justify-center items-center my-8 gap-6 ">
               <ResponsiveDesign/>
@@ -29,7 +29,7 @@ const CallToAction: React.FC = () => {
                 : 'bg-gray-300 border border-black text-gray-800 hover:bg-gray-400'
               }
             `}>
-                Explorar Mi Trabajo
+                Explore My Work
             </a>
         </section>
     );

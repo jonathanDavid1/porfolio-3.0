@@ -9,7 +9,7 @@ const ResponsiveDesign = () => {
             <FaMobileAlt size={40} className="text-gray-500" />
            <FaDesktop size={40} className="text-gray-500" />
              <span className="text-gray-600 text-lg">
-               Páginas Web Responsivas
+             Responsive Web Design
             </span>
         </div>
     );

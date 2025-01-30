@@ -31,15 +31,10 @@ const Intro: React.FC = () => {
               isDarkMode ? 'text-gray-200' : 'text-gray-600'
             }`}
           >
-            Desarrollador Web Full Stack con experiencia en la creación de
-            aplicaciones web interactivas y un sólido conocimiento en análisis de
-            datos, además de un alto dominio del inglés. Comprometido con el
-            aprendizaje continuo, me mantengo actualizado en las últimas
-            tendencias tecnológicas y me apasiona la creación de experiencias web
-            excepcionales.
+Full Stack Web Developer with experience in creating interactive web applications and a strong knowledge in data analysis, in addition to a high command of English. Committed to continuous learning, I keep up-to-date with the latest technological trends and I am passionate about creating exceptional web experiences.
           </p>
           <a
-            href="/jonathan-hernandez.pdf"
+            href="/cv jonathan hernandez.pdf"
             target="_blank"
             rel="noopener noreferrer"
             className={`py-2 px-4 rounded-md hover:bg-primary-700 transition-colors duration-200 font-medium
@@ -50,7 +45,7 @@ const Intro: React.FC = () => {
               }
             `}
           >
-            Descargar CV
+            Download CV
           </a>
         </div>
       </div>
