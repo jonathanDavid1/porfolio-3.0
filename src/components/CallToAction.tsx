@@ -4,18 +4,18 @@ import  ResponsiveDesign from './ResponsiveDesign';
 import BusinessGrowth from './BusinessGrowth';
 import Automation from './Automation';
 import { useTheme } from '@/ThemeContext';
+import { FormattedMessage } from 'react-intl';
 
 const CallToAction: React.FC = () => {
   const { isDarkMode } = useTheme();
 
-
     return (
         <section className="my-16 text-center animate-fade-in">
             <h2 className={`text-3xl font-bold mb-6 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
-            Ready to Transform Your Digital Presence
+             <FormattedMessage id="callToAction.title" defaultMessage="Ready to Transform Your Digital Presence"/>
             </h2>
             <p className={`text-lg mb-10 text-left ${isDarkMode ? 'text-gray-200' : 'text-gray-600'}`}>
-            Boost your company's growth with a web developer that offers you solid solutions, with impeccable designs, and a strategic vision of data analysis. Be part of the digital transformation, lead the market with a web presence that makes a difference, explore my work.
+             <FormattedMessage id="callToAction.description" defaultMessage="Boost your company's growth with a web developer that offers you solid solutions, with impeccable designs, and a strategic vision of data analysis. Be part of the digital transformation, lead the market with a web presence that makes a difference, explore my work."/>
             </p>
             <div className="flex flex-col md:flex-row justify-center items-center my-8 gap-6 ">
               <ResponsiveDesign/>
@@ -29,7 +29,7 @@ const CallToAction: React.FC = () => {
                 : 'bg-gray-300 border border-black text-gray-800 hover:bg-gray-400'
               }
             `}>
-                Explore My Work
+                <FormattedMessage id="callToAction.button" defaultMessage="Explore My Work"/>
             </a>
         </section>
     );

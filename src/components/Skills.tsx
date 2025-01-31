@@ -11,15 +11,16 @@ import {
     FaDocker,
     FaJava,
     FaDatabase,
-  } from 'react-icons/fa';
+} from 'react-icons/fa';
 import {
     SiNextdotjs,
     SiTailwindcss,
     SiTypescript,
-     SiExpress,
-  } from 'react-icons/si';
-  import { MdOutlineSettingsInputSvideo } from "react-icons/md";
-  import { useTheme } from '@/ThemeContext';
+    SiExpress,
+} from 'react-icons/si';
+import { MdOutlineSettingsInputSvideo } from "react-icons/md";
+import { useTheme } from '@/ThemeContext';
+import { FormattedMessage } from 'react-intl';
 
 const Skills: React.FC = () => {
   const { isDarkMode } = useTheme();
@@ -109,10 +110,14 @@ const Skills: React.FC = () => {
 
     return (
       <section id="skills" className="my-8 animate-fade-in">
-        <h2 className={`text-2xl font-semibold mb-4 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>{skillsData.title}</h2>
+        <h2 className={`text-2xl font-semibold mb-4 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+         <FormattedMessage id="skills.title" defaultMessage={skillsData.title}/>
+        </h2>
         {skillsData.skills?.map((skillGroup, index) => (
           <div key={index} className="mb-6">
-            <h3 className={`text-xl font-medium mb-2 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>{skillGroup.category}</h3>
+            <h3 className={`text-xl font-medium mb-2 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+                <FormattedMessage id={`skills.category.${index}`} defaultMessage={skillGroup.category}/>
+            </h3>
             <ul className="flex flex-wrap gap-2">
                 {skillGroup.items.map((item, itemIndex) => (
                   <li key={itemIndex} className={`rounded-md py-1 px-2 flex items-center gap-2 transition-colors duration-200 ${isDarkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}`}>

@@ -1,9 +1,14 @@
 'use client';
 import React from 'react';
 import { useTheme } from '@/ThemeContext';
+import { FormattedMessage, useIntl } from 'react-intl';
 
 const Intro: React.FC = () => {
   const { isDarkMode } = useTheme();
+  const intl = useIntl();
+
+    console.log("Intro component - current locale:", intl.locale);
+
 
   return (
     <section
@@ -24,14 +29,17 @@ const Intro: React.FC = () => {
               isDarkMode ? 'text-white' : 'text-gray-900'
             }`}
           >
-            Jonathan David Hernández
+             <FormattedMessage id="intro.title" defaultMessage="Jonathan David Hernández"/>
           </h1>
           <p
             className={`text-lg mb-8 ${
               isDarkMode ? 'text-gray-200' : 'text-gray-600'
             }`}
           >
-Full Stack Web Developer with experience in creating interactive web applications and a strong knowledge in data analysis, in addition to a high command of English. Committed to continuous learning, I keep up-to-date with the latest technological trends and I am passionate about creating exceptional web experiences.
+             <FormattedMessage
+                id="intro.description"
+                defaultMessage="Full Stack Web Developer with experience in creating interactive web applications and a strong knowledge in data analysis, in addition to a high command of English. Committed to continuous learning, I keep up-to-date with the latest technological trends and I am passionate about creating exceptional web experiences."
+              />
           </p>
           <a
             href="/cv jonathan hernandez.pdf"
@@ -45,7 +53,7 @@ Full Stack Web Developer with experience in creating interactive web application
               }
             `}
           >
-            Download CV
+           <FormattedMessage id="intro.downloadCv" defaultMessage="Download CV"/>
           </a>
         </div>
       </div>

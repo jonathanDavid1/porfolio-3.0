@@ -8,6 +8,7 @@ import Skills from "@/components/Skills";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import { Geist, Geist_Mono } from "next/font/google";
 import { useTheme } from "@/ThemeContext";
+import { FormattedMessage } from "react-intl";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,7 +30,7 @@ export default function Home() {
             <div className="fixed inset-0 z-0">
                <img
                    src={backgroundURL}
-                   alt="Fondo de pantalla"
+                   alt={<FormattedMessage id="background.alt" defaultMessage="Fondo de pantalla" />}
                    className="w-full h-full object-cover"
                />
             </div>

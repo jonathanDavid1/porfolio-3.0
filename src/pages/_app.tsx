@@ -1,14 +1,16 @@
 import '@/styles/globals.css';
 import type { AppProps } from 'next/app';
-import { appWithTranslation } from 'next-i18next';
 import { ThemeProvider } from '@/ThemeContext';
+import { LanguageProvider } from '@/LanguageContext';
 
 function MyApp({ Component, pageProps }: AppProps) {
     return (
-        <ThemeProvider> {/* Envolver tu aplicación */}
-            <Component {...pageProps} />
-        </ThemeProvider>
+        <LanguageProvider>
+             <ThemeProvider>
+                <Component {...pageProps} />
+            </ThemeProvider>
+        </LanguageProvider>
     );
 }
 
-export default appWithTranslation(MyApp);
+export default MyApp;

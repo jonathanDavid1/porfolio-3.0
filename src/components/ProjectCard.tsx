@@ -21,7 +21,7 @@ import {
 } from 'react-icons/si';
 import { MdOutlineSettingsInputSvideo } from "react-icons/md";
 import { useTheme } from '@/ThemeContext';
-
+import { FormattedMessage } from 'react-intl';
 
 interface ProjectCardProps {
     title: string;
@@ -95,11 +95,17 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ title, description, imageUrl,
                  <img src={imageUrl} alt={title} className="w-full h-56 object-contain mt-8" />
              </div>
             <div className="p-6 flex flex-col items-center">
-               <h3 className={`text-xl font-semibold mb-2 text-left ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>{title}</h3>
-               <p className={`mb-4 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>{description}</p>
+               <h3 className={`text-xl font-semibold mb-2 text-left ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+                 <FormattedMessage id={`projectCard.title.${title}`} defaultMessage={title} />
+               </h3>
+               <p className={`mb-4 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+                  <FormattedMessage id={`projectCard.description.${title}`} defaultMessage={description} />
+                </p>
                 <div className="mb-4 w-full">
                    <div className="flex space-x-4">
-                       <a href={projectUrl} target="_blank" rel="noopener noreferrer" className={`py-2 px-4 rounded-md hover:bg-primary-700 transition-colors duration-200 font-medium ${isDarkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-primary-500 text-white'}`}>Ver Proyecto</a>
+                       <a href={projectUrl} target="_blank" rel="noopener noreferrer" className={`py-2 px-4 rounded-md hover:bg-primary-700 transition-colors duration-200 font-medium ${isDarkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-primary-500 text-white'}`}>
+                         <FormattedMessage id="projectCard.view" defaultMessage="View Project" />
+                         </a>
                         <a href={githubUrl} target="_blank" rel="noopener noreferrer" className={`hover:text-primary-500 ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
                           <FaGithub size={24} />
                         </a>

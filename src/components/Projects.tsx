@@ -2,7 +2,7 @@
 import React from 'react';
 import ProjectCard from './ProjectCard';
 import { useTheme } from '@/ThemeContext';
-
+import { FormattedMessage } from 'react-intl';
 
 const Projects: React.FC = () => {
     const { isDarkMode } = useTheme();
@@ -43,7 +43,9 @@ const Projects: React.FC = () => {
 
     return (
         <section id="projects" className="my-8">
-            <h2 className={`text-2xl text-center font-semibold mb-4 ${isDarkMode ? 'text-white' : 'text-gray-900' }`}>Projects</h2>
+            <h2 className={`text-2xl text-center font-semibold mb-4 ${isDarkMode ? 'text-white' : 'text-gray-900' }`}>
+              <FormattedMessage id="projects.title" defaultMessage="Projects" />
+            </h2>
             <div className="md:grid md:grid-cols-2 md:gap-6">
                 {projects.map((project, index) => (
                     <ProjectCard key={index} {...project} />
