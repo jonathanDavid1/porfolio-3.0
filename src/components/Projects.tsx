@@ -52,7 +52,7 @@ const Projects: React.FC = () => {
             projectUrl: "https://colab.research.google.com/drive/1KQplG7yKFuTgjfIPygNfcOBAstqN72jg",
             githubUrl: "https://github.com/jonathanDavid1/mi-analisis-de-datos",
             technologies: ["Python", "Pandas", "NumPy", "Matplotlib", "Seaborn"],
-            iconColor: "red"  
+            iconColor: "red",
 
         },
     ];

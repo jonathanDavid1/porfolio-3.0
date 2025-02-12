@@ -6,21 +6,30 @@ import { AiOutlineMail } from 'react-icons/ai';
 import { RiWhatsappFill } from 'react-icons/ri';
 import { BsMoonFill, BsSunFill } from 'react-icons/bs';
 import { useTheme } from '@/ThemeContext';
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 import { FormattedMessage } from 'react-intl';
 import { useLanguage } from '@/LanguageContext';
 
 const Navbar: React.FC = () => {
   const { isDarkMode, toggleTheme } = useTheme();
   const router = useRouter();
+  const pathname = usePathname();
   const { locale, setLocale } = useLanguage();
 
   // Define los estilos base del texto según el tema
-    const textStyle = `text-gray-700  hover:text-primary-500 font-medium  px-2 py-1 rounded-md border border-gray-300  transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500  `;
-    const buttonStyle = isDarkMode
-      ? `${textStyle} text-white bg-gray-800 border-gray-700`
-      : `${textStyle} bg-gray-100 `;
+  const textStyle = `text-gray-700  hover:text-primary-500 font-medium  px-2 py-1 rounded-md border border-gray-300  transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500  `;
+  const buttonStyle = isDarkMode
+    ? `${textStyle} text-white bg-gray-800 border-gray-700`
+    : `${textStyle} bg-gray-100 `;
 
+  // Función para construir la URL con el nuevo locale
+  const createURL = (newLocale: string) => {
+    // Eliminar el locale actual del pathname si existe
+    const cleanPathname = pathname.startsWith(`/${locale}`) ? pathname.slice(3) : pathname;
+
+    // Construir la nueva URL
+    return `/${newLocale}${cleanPathname}`;
+  };
 
   return (
     <header
@@ -92,9 +101,9 @@ const Navbar: React.FC = () => {
           <select
             onChange={(event) => {
               const newLocale = event.target.value;
-              router.push(router.pathname + router.asPath, {
-                locale: newLocale,
-              });
+              // Construir la URL con el nuevo locale
+              const newURL = createURL(newLocale);
+              router.push(newURL);
               setLocale(newLocale);
             }}
             defaultValue={locale}
