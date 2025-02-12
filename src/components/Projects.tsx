@@ -53,6 +53,7 @@ const Projects: React.FC = () => {
             githubUrl: "https://github.com/jonathanDavid1/mi-analisis-de-datos",
             technologies: ["Python", "Pandas", "NumPy", "Matplotlib", "Seaborn"],
             iconColor: "red",
+            
 
         },
     ];

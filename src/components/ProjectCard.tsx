@@ -32,8 +32,6 @@ interface ProjectCardProps {
     projectUrl: string;
     githubUrl: string;
     technologies: string[];
-    giftColor: string;
-    lidColor: string;
     iconColor: string;
 }
 
@@ -44,9 +42,8 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
     projectUrl,
     githubUrl,
     technologies,
-    giftColor,
-    lidColor,
     iconColor
+
 }) => {
     const { isDarkMode } = useTheme();
     const carouselRef = useRef<HTMLDivElement>(null);
@@ -144,12 +141,12 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
                   className={`absolute inset-0 flex items-center justify-center transition-opacity duration-300 ${isRevealed ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
               >
                   <div className={`relative w-20 h-20`}>
-                      <div className={`absolute bottom-0 w-full h-3/4`} style={{ backgroundColor: giftColor }}></div>
-                      <div className={`absolute top-0 w-full h-1/4`} style={{ backgroundColor: lidColor }}></div>
+                      <div className={`absolute bottom-0 w-full h-3/4`} ></div>
+                      <div className={`absolute top-0 w-full h-1/4`}></div>
                       {/* Contenedor adicional para el icono */}
                       <div className={`absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-5xl`}>
                         <div className="jump-animation">
-                            <FontAwesomeIcon icon={faGift} size="5x" color={iconColor} />
+                            <FontAwesomeIcon icon={faGift} size="5x" color={iconColor}/>
                         </div>
                       </div>
                   </div>
