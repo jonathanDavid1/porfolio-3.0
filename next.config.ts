@@ -1,9 +1,7 @@
-/* const { i18n } = require('./next-i18next.config');
-
+// next.config.js
 module.exports = {
-  i18n,
-  publicRuntimeConfig: {
-    localePath: typeof window === 'undefined' ? require('path').resolve('./public/locales') : '/locales',
+  i18n: {
+    locales: ['en', 'es'],
+    defaultLocale: 'en',
   },
 };
- */
