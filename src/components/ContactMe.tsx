@@ -36,7 +36,7 @@ const ContactMe: React.FC = () => {
 
     return (
         <section id="contact" className="my-8">
-            <h2 className={`text-2xl text-center font-semibold mb-4 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+            <h2 className={`text-3xl text-center font-semibold mb-4 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
              <FormattedMessage id="contactMe.title" defaultMessage="Contact Me" />
             </h2>
             <p className={` text-center mb-8 ${isDarkMode ? 'text-gray-200' : 'text-gray-600'}`}>

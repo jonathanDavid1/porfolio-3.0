@@ -110,7 +110,7 @@ const Skills: React.FC = () => {
 
     return (
       <section id="skills" className="my-8 animate-fade-in">
-        <h2 className={`text-2xl font-semibold mb-4 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+        <h2 className={`text-3xl text-center font-semibold mb-4 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
          <FormattedMessage id="skills.title" defaultMessage={skillsData.title}/>
         </h2>
         {skillsData.skills?.map((skillGroup, index) => (
@@ -118,7 +118,7 @@ const Skills: React.FC = () => {
             <h3 className={`text-xl font-medium mb-2 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
                 <FormattedMessage id={`skills.category.${index}`} defaultMessage={skillGroup.category}/>
             </h3>
-            <ul className="flex flex-wrap gap-2">
+            <ul className="flex flex-wrap gap-5">
                 {skillGroup.items.map((item, itemIndex) => (
                   <li key={itemIndex} className={`rounded-md py-1 px-2 flex items-center gap-2 transition-colors duration-200 ${isDarkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}`}>
                        {getIcon(item)}

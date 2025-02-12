@@ -6,9 +6,14 @@ import { FormattedMessage, useIntl } from 'react-intl';
 const Intro: React.FC = () => {
   const { isDarkMode } = useTheme();
   const intl = useIntl();
+  const currentLocale = intl.locale;
 
-    console.log("Intro component - current locale:", intl.locale);
+  // Determina la URL del PDF basándose en el idioma
+  const cvPdfUrl = currentLocale === 'es'
+    ? '/cv dev jonathan SD.pdf'  // PDF en español
+    : '/cv dev jonathan ED.pdf'; // PDF en inglés (ajusta el nombre si es diferente)
 
+  console.log("Intro component - current locale:", intl.locale);
 
   return (
     <section
@@ -42,7 +47,7 @@ const Intro: React.FC = () => {
               />
           </p>
           <a
-            href="/cv jonathan hernandez.pdf"
+            href={cvPdfUrl} // Usamos la URL del PDF determinada
             target="_blank"
             rel="noopener noreferrer"
             className={`py-2 px-4 rounded-md hover:bg-primary-700 transition-colors duration-200 font-medium
