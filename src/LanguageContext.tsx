@@ -1,4 +1,5 @@
 'use client';
+
 import React, {
     createContext,
     useState,
@@ -30,24 +31,16 @@ const messages = {
     es
 };
 
-// Definir los tipos para los mensajes
 type Messages = typeof messages;
 
 export const LanguageProvider: React.FC<LanguageProviderProps> = ({
     children,
 }) => {
     const pathname = usePathname();
-    const router = useRouter(); // Mantenemos useRouter por si lo usas en otra parte
-    const initialLocale = pathname && pathname.includes('es') ? 'es' : 'en';
+    const router = useRouter();
+    const initialLocale = pathname.startsWith('/es') ? 'es' : 'en'; // Modificado
     const [locale, setLocale] = useState(initialLocale);
 
-    useEffect(() => {
-        // Eliminamos el acceso a router.locale
-        // if (router.locale) {
-        //   console.log("LanguageProvider useEffect router.locale:", router.locale);
-        //   setLocale(router.locale);
-        // }
-    }, []); // Eliminamos router.locale de las dependencias
 
     useEffect(() => {
         console.log("LanguageProvider useEffect locale changed:", locale);
