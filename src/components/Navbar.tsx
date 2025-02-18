@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect, useRef } from 'react';
 import { FaGithub, FaBars, FaTimes } from 'react-icons/fa';
 import { AiOutlineMail } from 'react-icons/ai';
 import { RiWhatsappFill } from 'react-icons/ri';
@@ -16,6 +16,7 @@ const Navbar: React.FC = () => {
     const pathname = usePathname();
     const { locale, setLocale } = useLanguage();
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const menuRef = useRef<HTMLDivElement>(null); // Ref for the mobile menu
 
     const textStyle = `text-gray-700 hover:text-primary-500 font-medium px-2 py-1 rounded-md border border-gray-300 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500`;
     const buttonStyle = isDarkMode
@@ -43,10 +44,38 @@ const Navbar: React.FC = () => {
     };
 
 
+    // ---  Bloque para controlar el scroll ---
+    useEffect(() => {
+        const handleScroll = () => {
+             if (isMobileMenuOpen) {
+                // Prevent scrolling on the body
+                document.body.style.overflow = 'hidden';
+
+             } else {
+
+                document.body.style.overflow = ''; // Reset
+
+            }
+
+        };
+
+        // Call it to set initial state based on isMobileMenuOpen
+        handleScroll();
+
+        window.addEventListener('scroll', handleScroll);
+
+        return () => {
+          window.removeEventListener('scroll', handleScroll);
+          document.body.style.overflow = ''; // Ensure cleanup
+        };
+
+    }, [isMobileMenuOpen]); // Depend on isMobileMenuOpen
+
+
     return (
         <header
-            className={`py-4 fixed top-0 left-0 w-full z-20 transition-shadow duration-200 ${
-                isDarkMode ? 'shadow-md bg-black' : 'shadow-md bg-gray-50'
+            className={`py-2 fixed top-0 left-0 w-full z-20 transition-shadow duration-200 ${
+                isDarkMode ? 'shadow-md bg-gray-900' : 'shadow-md bg-gray-200'
             }`}
         >
             <div className="container mx-auto flex justify-between items-center px-4">
@@ -62,7 +91,7 @@ const Navbar: React.FC = () => {
                         {isMobileMenuOpen ? <FaTimes size={20} /> : <FaBars size={20} />}
                     </button>
 
-                    {/* Redes sociales (ajustadas a la derecha en pantallas pequeñas) */}
+                    {/* Redes sociales y cambio de tema (ajustadas a la derecha en pantallas pequeñas) */}
                     <div className="flex items-center">
                         <a
                             href="mailto:jhernadezcorrea@gmail.com"
@@ -86,11 +115,14 @@ const Navbar: React.FC = () => {
                             href="https://wa.me/+573105787397"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-gray-500 hover:text-primary-500"
+                            className="text-gray-500 hover:text-primary-500 mr-4"  // Added mr-4 here
                             aria-label="WhatsApp"
                         >
                             <RiWhatsappFill size={20} />
                         </a>
+                        <button onClick={toggleTheme} className="text-gray-500 hover:text-primary-500">
+                            {isDarkMode ? <BsSunFill size={20} /> : <BsMoonFill size={20} />}
+                        </button>
                     </div>
                 </div>
 
@@ -115,7 +147,7 @@ const Navbar: React.FC = () => {
                             </a>
                         </li>
                     </ul>
-                      {/* Selector de idioma y cambio de tema (en el menú principal) */}
+                      {/* Selector de idioma  (en el menú principal) */}
                     <div className='flex items-center'>
                         <select
                             onChange={(event) => handleLocaleChange(event.target.value)}
@@ -129,22 +161,21 @@ const Navbar: React.FC = () => {
                             <option value="en">English</option>
                             <option value="es">Español</option>
                         </select>
-                        <button onClick={toggleTheme} className="ml-4 text-gray-500 hover:text-primary-500">
-                            {isDarkMode ? <BsSunFill size={20} /> : <BsMoonFill size={20} />}
-                        </button>
+                        
                     </div>
                 </nav>
 
                 {/* Menú móvil (visible en < sm) */}
                 {isMobileMenuOpen && (
                     <div
+                        ref={menuRef} // Assign the ref
                         className={`fixed top-0 left-0 w-full h-full ${
-                            isDarkMode ? 'bg-black' : 'bg-white'
+                            isDarkMode ? 'bg-gray-800' : 'bg-gray-100'
                         } z-50`}
                     >
-                        <div className="flex flex-col  h-full py-10 px-4">
-                            {/* Parte superior:  botón CERRAR */}
-                            <div className="flex items-center justify-between">
+                        <div className="flex flex-col  h-full py-4 px-4">  {/* py-10, not py-4 */}
+                            {/* Parte superior:  botón CERRAR, selector de idioma, y botón de tema */}
+                            <div className={`flex items-center justify-between border-b pb-4 ${isDarkMode ? 'border-gray-700' : 'border-gray-300'}`}>
 
                                  {/* Botón CERRAR (visible dentro del menú móvil) */}
                                 <button

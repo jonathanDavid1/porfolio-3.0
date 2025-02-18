@@ -24,7 +24,7 @@ export default function Document() {
     return (
         <Html lang="en" className={darkMode ? 'dark' : ''}>
             <Head />
-            <body className="antialiased bg-background-DEFAULT dark:bg-background-secondary">
+            <body className="antialiased bg-background-DEFAULT dark:bg-background-secondary m-4">
                 <Main />
                 <NextScript />
             </body>
