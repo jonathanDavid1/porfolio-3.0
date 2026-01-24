@@ -11,7 +11,7 @@ const Projects: React.FC = () => {
             title: "Serendicus",
             description: "Serendicus is a project created in Next.js where I showcase beautiful places in the area where I live and promote properties for sale.",
             imageUrl: "/serendicus.png",
-            projectUrl: "serendicus.netlify.app",
+            projectUrl: "https://serendicus.netlify.app",
             githubUrl: "https://github.com/jonathanDavid1/my-portafolio",
             technologies: ["Next.js", "Tailwind CSS", "React", "JavaScript", "TypeScript", "GitHub", "Git", "Netlify", "SEO"],
             iconColor: "gold"  // Color válido
