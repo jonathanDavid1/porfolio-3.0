@@ -11,9 +11,9 @@ const Projects: React.FC = () => {
             title: "Serendicus",
             description: "Serendicus is a project created in Next.js where I showcase beautiful places in the area where I live and promote properties for sale.",
             imageUrl: "/serendicus.png",
-            projectUrl: "https://serendicus.com/",
+            projectUrl: "serendicus.netlify.app",
             githubUrl: "https://github.com/jonathanDavid1/my-portafolio",
-            technologies: ["Next.js", "Tailwind CSS", "React", "JavaScript", "TypeScript", "GitHub", "Git", "Netlify","SEO"],
+            technologies: ["Next.js", "Tailwind CSS", "React", "JavaScript", "TypeScript", "GitHub", "Git", "Netlify", "SEO"],
             iconColor: "gold"  // Color válido
         },
         {
@@ -53,15 +53,15 @@ const Projects: React.FC = () => {
             githubUrl: "https://github.com/jonathanDavid1/mi-analisis-de-datos",
             technologies: ["Python", "Pandas", "NumPy", "Matplotlib", "Seaborn"],
             iconColor: "red",
-            
+
 
         },
     ];
 
     return (
         <section id="projects" className="my-8">
-            <h2 className={`text-3xl text-center font-semibold mb-8 ${isDarkMode ? 'text-white' : 'text-gray-900' }`}>
-              <FormattedMessage id="projects.title" defaultMessage="Projects" />
+            <h2 className={`text-3xl text-center font-semibold mb-8 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+                <FormattedMessage id="projects.title" defaultMessage="Projects" />
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 md:gap-6">
                 {projects.map((project, index) => (
