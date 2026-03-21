@@ -54,7 +54,7 @@ I value technical truth and logical depth. My work is guided by a commitment to 
 
 ### 📫 Connect with Me
 * **Portfolio:** [porfoliodevjonathan.netlify.app](https://porfoliodevjonathan.netlify.app/)
-* **LinkedIn:** [Your LinkedIn Profile Link Here]
+* **LinkedIn:** https://www.linkedin.com/in/jonathan-david-hernandez-correa-17b0293a3/
 * **Email:** jhernadezcorrea@gmail.com
 
 ---
