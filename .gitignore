@@ -39,3 +39,11 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Docker
+.dockerignore
+# Si usas docker-compose más adelante
+docker-compose.override.yml
+# NUNCA subas archivos con credenciales
+.env
+.env.local
