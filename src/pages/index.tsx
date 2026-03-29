@@ -10,15 +10,15 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { useTheme } from "@/ThemeContext";
 import { FormattedMessage } from "react-intl";
 import { FaReact } from 'react-icons/fa';
-
+import Chatbot from "@/components/Chatbot";
 const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+    variable: "--font-geist-sans",
+    subsets: ["latin"],
 });
 
 const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+    variable: "--font-geist-mono",
+    subsets: ["latin"],
 });
 
 export default function Home() {
@@ -29,21 +29,22 @@ export default function Home() {
     return (
         <div className={`${geistSans.variable} ${geistMono.variable} relative`}>
             <div className="fixed inset-0 z-0">
-               <img
-                   src={backgroundURL}
-                   alt="backGround"
-                   className="w-full h-full object-cover"
-               />
+                <img
+                    src={backgroundURL}
+                    alt="backGround"
+                    className="w-full h-full object-cover"
+                />
             </div>
-            <Navbar/>
+            <Navbar />
             <main className="container mx-auto py-8 relative z-10">
-                <Intro/>
+                <Intro />
                 <Skills />
-                <CallToAction/>
-                <Projects/>
-                <ContactMe/>
+                <CallToAction />
+                <Projects />
+                <ContactMe />
             </main>
             <WhatsAppButton />
+            <Chatbot />
         </div>
     );
 }
