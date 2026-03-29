@@ -154,8 +154,9 @@ const Chatbot = () => {
             {/* Ventana de Chat Flotante */}
             {isOpen && (
                 <div
-                    className={`mb-4 w-[340px] sm:w-[380px] h-[500px] flex flex-col rounded-2xl shadow-2xl overflow-hidden transition-all duration-300 transform origin-bottom-right ${isDarkMode ? 'bg-gray-800 border-gray-700 border' : 'bg-white border-gray-200 border'
+                    className={`mb-4 w-[340px] sm:w-[380px] h-[500px] max-h-[calc(100vh-140px)] flex flex-col rounded-2xl shadow-2xl overflow-hidden transition-all duration-300 transform origin-bottom-right ${isDarkMode ? 'bg-gray-800 border-gray-700 border' : 'bg-white border-gray-200 border'
                         }`}
+
                 >
                     {/* Header Premium */}
                     <div className="bg-gradient-to-r from-blue-600 to-indigo-600 p-4 flex justify-between items-center text-white shadow-md z-10">
