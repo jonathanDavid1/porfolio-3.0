@@ -35,6 +35,11 @@
   "contactMe.email": "Correo Electrónico",
   "contactMe.message": "Mensaje",
   "contactMe.send": "Enviar Mensaje",
+  "contactMe.sending": "Enviando...",
+  "contactMe.error": "Algo salió mal. Por favor inténtalo de nuevo.",
+  "contactMe.successTitle": "¡Mensaje enviado!",
+  "contactMe.successSubtitle": "Me pondré en contacto contigo pronto.",
+  "contactMe.directContact": "O contáctame directamente",
   "contactMe.namePlaceholder": "Tu Nombre",
   "contactMe.emailPlaceholder": "Tu Correo Electrónico",
   "contactMe.messagePlaceholder": "Tu Mensaje"

@@ -35,6 +35,11 @@
    "contactMe.email":"Email",
   "contactMe.message":"Message",
    "contactMe.send":"Send Message",
+   "contactMe.sending":"Sending...",
+   "contactMe.error":"Something went wrong. Please try again.",
+   "contactMe.successTitle":"Message sent!",
+   "contactMe.successSubtitle":"I'll get back to you shortly.",
+   "contactMe.directContact":"Or reach me directly",
     "contactMe.namePlaceholder":"Your Name",
    "contactMe.emailPlaceholder":"Your Email",
    "contactMe.messagePlaceholder":"Your Message"
