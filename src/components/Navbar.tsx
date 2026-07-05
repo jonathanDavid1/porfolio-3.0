@@ -29,8 +29,8 @@ const Navbar: React.FC = () => {
     const getLinkClass = (section: string) => {
         const isActive = activeSection === section;
         return `relative font-medium text-sm transition-colors duration-300 py-1.5 px-1 focus:outline-none cursor-pointer
-            ${isActive 
-                ? (isDarkMode ? 'text-blue-400 font-semibold' : 'text-indigo-600 font-semibold') 
+            ${isActive
+                ? (isDarkMode ? 'text-blue-400 font-semibold' : 'text-indigo-600 font-semibold')
                 : (isDarkMode ? 'text-gray-300 hover:text-blue-400' : 'text-gray-600 hover:text-indigo-600')
             }
             after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2px] 
@@ -44,9 +44,9 @@ const Navbar: React.FC = () => {
     const getMobileLinkClass = (section: string) => {
         const isActive = activeSection === section;
         return `w-full text-left font-medium text-lg transition-all duration-200 py-2.5 px-4 rounded-lg focus:outline-none cursor-pointer block
-            ${isActive 
-                ? (isDarkMode ? 'bg-slate-700/80 text-blue-400 font-semibold border-l-4 border-blue-400' : 'bg-gray-200 text-indigo-600 font-semibold border-l-4 border-indigo-600') 
-                : (isDarkMode ? 'text-gray-300 hover:bg-slate-750' : 'text-gray-700 hover:bg-gray-100')
+            ${isActive
+                ? (isDarkMode ? 'bg-slate-700/80 text-blue-400 font-semibold border-l-4 border-blue-400' : 'bg-gray-200 text-indigo-600 font-semibold border-l-4 border-indigo-600')
+                : (isDarkMode ? 'text-gray-300 hover:bg-slate-700' : 'text-gray-700 hover:bg-gray-100')
             }
         `;
     };
@@ -62,7 +62,7 @@ const Navbar: React.FC = () => {
             }
             setLocale(newLocale);
             router.push(newPathname);
-            setIsMobileMenuOpen(false); // Cierra al cambiar idioma
+            setIsMobileMenuOpen(false);
         },
         [pathname, router, setLocale]
     );
@@ -120,199 +120,199 @@ const Navbar: React.FC = () => {
         return () => document.removeEventListener('mousedown', handleClickOutside);
     }, []);
 
-    // Scroll control when mobile menu is open
+    // Lock body scroll when mobile menu is open
     useEffect(() => {
-        const handleScroll = () => {
-             if (isMobileMenuOpen) {
-                document.body.style.overflow = 'hidden';
-             } else {
-                document.body.style.overflow = '';
-            }
-        };
-        handleScroll();
-        window.addEventListener('scroll', handleScroll);
+        if (isMobileMenuOpen) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = '';
+        }
         return () => {
-          window.removeEventListener('scroll', handleScroll);
-          document.body.style.overflow = '';
+            document.body.style.overflow = '';
         };
     }, [isMobileMenuOpen]);
 
     return (
-        <header
-            className={`py-3 fixed top-0 left-0 w-full z-20 backdrop-blur-md transition-all duration-300 ${
-                isDarkMode 
-                    ? 'shadow-lg bg-slate-900/80 border-b border-slate-800/40' 
-                    : 'shadow-md bg-white/75 border-b border-gray-200/40'
-            }`}
-        >
-            <div className="container mx-auto flex justify-between items-center px-6">
-                
-                {/* Brand Logo */}
-                <a 
-                    href="#home" 
-                    className="text-xl font-bold bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 dark:from-blue-400 dark:via-indigo-400 dark:to-purple-400 bg-clip-text text-transparent hover:scale-105 transition-transform duration-200 cursor-pointer select-none"
-                >
-                    jonathan.dev
-                </a>
+        <>
+            {/* ── Navbar ── */}
+            <header
+                className={`py-3 fixed top-0 left-0 w-full z-20 backdrop-blur-md transition-all duration-300 ${
+                    isDarkMode
+                        ? 'shadow-lg bg-slate-900/80 border-b border-slate-800/40'
+                        : 'shadow-md bg-white/75 border-b border-gray-200/40'
+                }`}
+            >
+                <div className="container mx-auto flex justify-between items-center px-6">
 
-                {/* Main Navigation Links (Desktop) */}
-                <nav className="hidden sm:flex items-center space-x-8">
-                    <ul className="flex space-x-8">
-                        <li>
-                            <a href="#home" className={getLinkClass('home')}>
-                                <FormattedMessage id="home" defaultMessage="Home" />
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#projects" className={getLinkClass('projects')}>
-                                <FormattedMessage id="projects" defaultMessage="Projects" />
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#contact" className={getLinkClass('contact')}>
-                                <FormattedMessage id="contact" defaultMessage="Contact" />
-                            </a>
-                        </li>
-                    </ul>
+                    {/* Brand Logo */}
+                    <a
+                        href="#home"
+                        className="text-xl font-bold bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 dark:from-blue-400 dark:via-indigo-400 dark:to-purple-400 bg-clip-text text-transparent hover:scale-105 transition-transform duration-200 cursor-pointer select-none"
+                    >
+                        jonathan.dev
+                    </a>
 
-                    {/* Language Selector (Desktop) */}
-                    <div className="relative" ref={langRef}>
-                        <button
-                            onClick={() => setIsLangOpen(!isLangOpen)}
-                            className={`flex items-center space-x-1 border rounded-md py-1.5 px-3 focus:outline-none transition-all duration-200 text-sm font-medium ${
-                                isDarkMode
-                                    ? 'bg-slate-800 text-white border-slate-700 hover:bg-slate-700'
-                                    : 'bg-white text-gray-800 border-gray-300 hover:bg-gray-50'
-                            }`}
-                        >
-                            <span>{locale === 'en' ? 'EN' : 'ES'}</span>
-                            <svg
-                                className={`w-4 h-4 transition-transform duration-200 ${isLangOpen ? 'rotate-180' : ''}`}
-                                fill="none"
-                                stroke="currentColor"
-                                viewBox="0 0 24 24"
-                            >
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
-                            </svg>
-                        </button>
-                        {isLangOpen && (
-                            <div
-                                className={`absolute right-0 mt-2 w-28 rounded-md shadow-lg border py-1 z-50 transition-all duration-200 ${
-                                    isDarkMode ? 'bg-slate-800 border-slate-700 text-white' : 'bg-white border-gray-200 text-gray-800'
+                    {/* Main Navigation Links (Desktop) */}
+                    <nav className="hidden sm:flex items-center space-x-8">
+                        <ul className="flex space-x-8">
+                            <li>
+                                <a href="#home" className={getLinkClass('home')}>
+                                    <FormattedMessage id="home" defaultMessage="Home" />
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#projects" className={getLinkClass('projects')}>
+                                    <FormattedMessage id="projects" defaultMessage="Projects" />
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#contact" className={getLinkClass('contact')}>
+                                    <FormattedMessage id="contact" defaultMessage="Contact" />
+                                </a>
+                            </li>
+                        </ul>
+
+                        {/* Language Selector (Desktop) */}
+                        <div className="relative" ref={langRef}>
+                            <button
+                                onClick={() => setIsLangOpen(!isLangOpen)}
+                                className={`flex items-center space-x-1 border rounded-md py-1.5 px-3 focus:outline-none transition-all duration-200 text-sm font-medium ${
+                                    isDarkMode
+                                        ? 'bg-slate-800 text-white border-slate-700 hover:bg-slate-700'
+                                        : 'bg-white text-gray-800 border-gray-300 hover:bg-gray-50'
                                 }`}
                             >
-                                <button
-                                    onClick={() => {
-                                        handleLocaleChange('en');
-                                        setIsLangOpen(false);
-                                    }}
-                                    className={`w-full text-left px-4 py-2 text-sm transition-colors duration-150 ${
-                                        locale === 'en'
-                                            ? 'bg-indigo-500/10 text-indigo-500 dark:text-blue-400 font-semibold'
-                                            : isDarkMode ? 'hover:bg-slate-750' : 'hover:bg-gray-50'
+                                <span>{locale === 'en' ? 'EN' : 'ES'}</span>
+                                <svg
+                                    className={`w-4 h-4 transition-transform duration-200 ${isLangOpen ? 'rotate-180' : ''}`}
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                                </svg>
+                            </button>
+                            {isLangOpen && (
+                                <div
+                                    className={`absolute right-0 mt-2 w-28 rounded-md shadow-lg border py-1 z-50 transition-all duration-200 ${
+                                        isDarkMode ? 'bg-slate-800 border-slate-700 text-white' : 'bg-white border-gray-200 text-gray-800'
                                     }`}
                                 >
-                                    English
-                                </button>
-                                <button
-                                    onClick={() => {
-                                        handleLocaleChange('es');
-                                        setIsLangOpen(false);
-                                    }}
-                                    className={`w-full text-left px-4 py-2 text-sm transition-colors duration-150 ${
-                                        locale === 'es'
-                                            ? 'bg-indigo-500/10 text-indigo-500 dark:text-blue-400 font-semibold'
-                                            : isDarkMode ? 'hover:bg-slate-750' : 'hover:bg-gray-50'
-                                    }`}
-                                >
-                                    Español
-                                </button>
-                            </div>
-                        )}
-                    </div>
-                </nav>
-
-                {/* Right Side Icons & Actions (Desktop and Mobile controls) */}
-                <div className="flex items-center space-x-4">
-                    {/* Social networks (Desktop) */}
-                    <div className="hidden sm:flex items-center space-x-3.5">
-                        <a
-                            href="mailto:jhernadezcorrea@gmail.com"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-gray-500 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-blue-400 transition-all duration-200 hover:scale-110 hover:-translate-y-0.5"
-                            aria-label="Email"
-                        >
-                            <AiOutlineMail size={20} />
-                        </a>
-                        <a
-                            href="https://github.com/jonathanDavid1"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-gray-500 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-blue-400 transition-all duration-200 hover:scale-110 hover:-translate-y-0.5"
-                            aria-label="GitHub"
-                        >
-                            <FaGithub size={20} />
-                        </a>
-                        <a
-                            href="https://wa.me/+573105787397"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-gray-500 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-blue-400 transition-all duration-200 hover:scale-110 hover:-translate-y-0.5"
-                            aria-label="WhatsApp"
-                        >
-                            <RiWhatsappFill size={20} />
-                        </a>
-                    </div>
-
-                    {/* Separator line (Desktop) */}
-                    <span className="hidden sm:inline-block h-5 w-px bg-gray-300 dark:bg-slate-700"></span>
-
-                    {/* Theme Toggle Button (Desktop & Mobile) */}
-                    <button 
-                        onClick={handleThemeClick} 
-                        className="text-gray-500 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-blue-400 p-1.5 rounded-lg hover:bg-gray-100 dark:hover:bg-slate-800 transition-all duration-200 focus:outline-none cursor-pointer"
-                        aria-label="Theme toggle"
-                    >
-                        <div className={`transition-transform duration-500 ${isThemeRotating ? 'rotate-[360deg]' : ''}`}>
-                            {isDarkMode ? <BsSunFill size={20} /> : <BsMoonFill size={20} />}
+                                    <button
+                                        onClick={() => { handleLocaleChange('en'); setIsLangOpen(false); }}
+                                        className={`w-full text-left px-4 py-2 text-sm transition-colors duration-150 ${
+                                            locale === 'en'
+                                                ? 'bg-indigo-500/10 text-indigo-500 dark:text-blue-400 font-semibold'
+                                                : isDarkMode ? 'hover:bg-slate-700' : 'hover:bg-gray-50'
+                                        }`}
+                                    >
+                                        English
+                                    </button>
+                                    <button
+                                        onClick={() => { handleLocaleChange('es'); setIsLangOpen(false); }}
+                                        className={`w-full text-left px-4 py-2 text-sm transition-colors duration-150 ${
+                                            locale === 'es'
+                                                ? 'bg-indigo-500/10 text-indigo-500 dark:text-blue-400 font-semibold'
+                                                : isDarkMode ? 'hover:bg-slate-700' : 'hover:bg-gray-50'
+                                        }`}
+                                    >
+                                        Español
+                                    </button>
+                                </div>
+                            )}
                         </div>
-                    </button>
+                    </nav>
 
-                    {/* Mobile Hamburger menu trigger */}
-                    <button
-                        onClick={toggleMobileMenu}
-                        className="sm:hidden text-gray-500 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-blue-400 p-1.5 rounded-lg hover:bg-gray-100 dark:hover:bg-slate-800 transition-all duration-200 focus:outline-none cursor-pointer"
-                        aria-label="Menu"
-                    >
-                        {isMobileMenuOpen ? <FaTimes size={20} /> : <FaBars size={20} />}
-                    </button>
+                    {/* Right Side Icons & Actions */}
+                    <div className="flex items-center space-x-4">
+                        {/* Social networks (Desktop) */}
+                        <div className="hidden sm:flex items-center space-x-3.5">
+                            <a
+                                href="mailto:jhernadezcorrea@gmail.com"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-gray-500 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-blue-400 transition-all duration-200 hover:scale-110 hover:-translate-y-0.5"
+                                aria-label="Email"
+                            >
+                                <AiOutlineMail size={20} />
+                            </a>
+                            <a
+                                href="https://github.com/jonathanDavid1"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-gray-500 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-blue-400 transition-all duration-200 hover:scale-110 hover:-translate-y-0.5"
+                                aria-label="GitHub"
+                            >
+                                <FaGithub size={20} />
+                            </a>
+                            <a
+                                href="https://wa.me/+573105787397"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-gray-500 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-blue-400 transition-all duration-200 hover:scale-110 hover:-translate-y-0.5"
+                                aria-label="WhatsApp"
+                            >
+                                <RiWhatsappFill size={20} />
+                            </a>
+                        </div>
+
+                        {/* Separator (Desktop) */}
+                        <span className="hidden sm:inline-block h-5 w-px bg-gray-300 dark:bg-slate-700"></span>
+
+                        {/* Theme Toggle */}
+                        <button
+                            onClick={handleThemeClick}
+                            className="text-gray-500 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-blue-400 p-1.5 rounded-lg hover:bg-gray-100 dark:hover:bg-slate-800 transition-all duration-200 focus:outline-none cursor-pointer"
+                            aria-label="Theme toggle"
+                        >
+                            <div className={`transition-transform duration-500 ${isThemeRotating ? 'rotate-[360deg]' : ''}`}>
+                                {isDarkMode ? <BsSunFill size={20} /> : <BsMoonFill size={20} />}
+                            </div>
+                        </button>
+
+                        {/* Mobile Hamburger */}
+                        <button
+                            onClick={toggleMobileMenu}
+                            className="sm:hidden text-gray-500 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-blue-400 p-1.5 rounded-lg hover:bg-gray-100 dark:hover:bg-slate-800 transition-all duration-200 focus:outline-none cursor-pointer"
+                            aria-label="Menu"
+                        >
+                            {isMobileMenuOpen ? <FaTimes size={20} /> : <FaBars size={20} />}
+                        </button>
+                    </div>
                 </div>
+            </header>
 
-                {/* Mobile Menu Overlay */}
-                {isMobileMenuOpen && (
+            {/* ── Mobile Menu — outside <header> to avoid stacking context issues ── */}
+            {isMobileMenuOpen && (
+                <>
+                    {/* Dimmed backdrop — closes menu on click */}
+                    <div
+                        className="fixed inset-0 bg-black/40 z-30"
+                        onClick={toggleMobileMenu}
+                    />
+
+                    {/* Slide-in side panel */}
                     <div
                         ref={menuRef}
-                        className={`fixed top-0 left-0 w-full h-full ${
-                            isDarkMode ? 'bg-slate-900 text-white' : 'bg-gray-50 text-gray-800'
-                        } z-50`}
+                        className={`fixed top-0 left-0 h-full w-72 z-40 shadow-2xl flex flex-col
+                            ${isDarkMode ? 'bg-slate-900 text-white' : 'bg-white text-gray-800'}`}
                     >
                         <div className="flex flex-col h-full py-6 px-6">
-                            
-                            {/* Header inside mobile menu */}
+
+                            {/* Panel header */}
                             <div className={`flex items-center justify-between border-b pb-4 ${isDarkMode ? 'border-slate-800' : 'border-gray-200'}`}>
                                 <span className="text-lg font-bold bg-gradient-to-r from-indigo-500 to-pink-500 dark:from-blue-400 dark:to-purple-400 bg-clip-text text-transparent">
                                     jonathan.dev
                                 </span>
-                                
+
                                 <div className="flex items-center space-x-3">
-                                    {/* Mobile Custom Language Selector */}
+                                    {/* Language Selector (Mobile) */}
                                     <div className="relative" ref={mobileLangRef}>
                                         <button
                                             onClick={() => setIsMobileLangOpen(!isMobileLangOpen)}
                                             className={`flex items-center space-x-1 border rounded-md py-1.5 px-3 focus:outline-none transition-all duration-200 text-sm font-medium ${
                                                 isDarkMode
-                                                    ? 'bg-slate-850 text-white border-slate-700 hover:bg-slate-800'
+                                                    ? 'text-white border-slate-700 hover:bg-slate-800'
                                                     : 'bg-white text-gray-800 border-gray-300 hover:bg-gray-50'
                                             }`}
                                         >
@@ -333,27 +333,21 @@ const Navbar: React.FC = () => {
                                                 }`}
                                             >
                                                 <button
-                                                    onClick={() => {
-                                                        handleLocaleChange('en');
-                                                        setIsMobileLangOpen(false);
-                                                    }}
+                                                    onClick={() => { handleLocaleChange('en'); setIsMobileLangOpen(false); }}
                                                     className={`w-full text-left px-4 py-2 text-sm transition-colors duration-150 ${
                                                         locale === 'en'
                                                             ? 'bg-indigo-500/10 text-indigo-500 dark:text-blue-400 font-semibold'
-                                                            : isDarkMode ? 'hover:bg-slate-750' : 'hover:bg-gray-50'
+                                                            : isDarkMode ? 'hover:bg-slate-700' : 'hover:bg-gray-50'
                                                     }`}
                                                 >
                                                     English
                                                 </button>
                                                 <button
-                                                    onClick={() => {
-                                                        handleLocaleChange('es');
-                                                        setIsMobileLangOpen(false);
-                                                    }}
+                                                    onClick={() => { handleLocaleChange('es'); setIsMobileLangOpen(false); }}
                                                     className={`w-full text-left px-4 py-2 text-sm transition-colors duration-150 ${
                                                         locale === 'es'
                                                             ? 'bg-indigo-500/10 text-indigo-500 dark:text-blue-400 font-semibold'
-                                                            : isDarkMode ? 'hover:bg-slate-750' : 'hover:bg-gray-50'
+                                                            : isDarkMode ? 'hover:bg-slate-700' : 'hover:bg-gray-50'
                                                     }`}
                                                 >
                                                     Español
@@ -362,7 +356,7 @@ const Navbar: React.FC = () => {
                                         )}
                                     </div>
 
-                                    {/* Close Button */}
+                                    {/* Close button */}
                                     <button
                                         onClick={toggleMobileMenu}
                                         className="text-gray-500 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-blue-400 p-1.5 rounded-lg hover:bg-gray-100 dark:hover:bg-slate-800 transition-all duration-200 focus:outline-none"
@@ -373,34 +367,22 @@ const Navbar: React.FC = () => {
                                 </div>
                             </div>
 
-                            {/* Mobile Links */}
+                            {/* Navigation links */}
                             <nav className="mt-8 flex flex-col space-y-4 flex-grow">
-                                <a
-                                    onClick={() => setIsMobileMenuOpen(false)}
-                                    href="#home"
-                                    className={getMobileLinkClass('home')}
-                                >
+                                <a onClick={() => setIsMobileMenuOpen(false)} href="#home" className={getMobileLinkClass('home')}>
                                     <FormattedMessage id="home" defaultMessage="Home" />
                                 </a>
-                                <a
-                                    onClick={() => setIsMobileMenuOpen(false)}
-                                    href="#projects"
-                                    className={getMobileLinkClass('projects')}
-                                >
+                                <a onClick={() => setIsMobileMenuOpen(false)} href="#projects" className={getMobileLinkClass('projects')}>
                                     <FormattedMessage id="projects" defaultMessage="Projects" />
                                 </a>
-                                <a
-                                    onClick={() => setIsMobileMenuOpen(false)}
-                                    href="#contact"
-                                    className={getMobileLinkClass('contact')}
-                                >
+                                <a onClick={() => setIsMobileMenuOpen(false)} href="#contact" className={getMobileLinkClass('contact')}>
                                     <FormattedMessage id="contact" defaultMessage="Contact" />
                                 </a>
                             </nav>
 
-                            {/* Mobile Social icons at the bottom */}
-                            <div className="flex items-center justify-center space-x-6 pt-6 border-t border-gray-250 dark:border-slate-800">
-                                 <a
+                            {/* Social icons at the bottom */}
+                            <div className="flex items-center justify-center space-x-6 pt-6 border-t border-gray-200 dark:border-slate-800">
+                                <a
                                     href="mailto:jhernadezcorrea@gmail.com"
                                     target="_blank"
                                     rel="noopener noreferrer"
@@ -428,12 +410,11 @@ const Navbar: React.FC = () => {
                                     <RiWhatsappFill size={24} />
                                 </a>
                             </div>
-
                         </div>
                     </div>
-                )}
-            </div>
-        </header>
+                </>
+            )}
+        </>
     );
 };
 
