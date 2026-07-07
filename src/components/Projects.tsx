@@ -14,7 +14,6 @@ const Projects: React.FC = () => {
             projectUrl: "https://serendicus.netlify.app",
             githubUrl: "https://github.com/jonathanDavid1/my-portafolio",
             technologies: ["Next.js", "Tailwind CSS", "React", "JavaScript", "TypeScript", "GitHub", "Git", "Netlify", "SEO"],
-            iconColor: "gold"  // Color válido
         },
         {
             title: "POKEDEX",
@@ -23,8 +22,6 @@ const Projects: React.FC = () => {
             projectUrl: "https://pokedexwithreactandredux.netlify.app/pokedex",
             githubUrl: "https://github.com/jonathanDavid1/mi-aplicacion-de-tareas",
             technologies: ["React", "Node.js", "MongoDB", "Express"],
-            iconColor: "silver"  // Color válido
-
         },
         {
             title: "Web de Ecommerce",
@@ -33,7 +30,6 @@ const Projects: React.FC = () => {
             projectUrl: "https://carrito-de-compras-colombia.netlify.app/#",
             githubUrl: "https://github.com/jonathanDavid1/mi-web-ecommerce",
             technologies: ["Next.js", "Tailwind CSS", "React", "Strapi"],
-            iconColor: "purple"   // Color válido
         },
         {
             title: "GifMusic",
@@ -41,9 +37,7 @@ const Projects: React.FC = () => {
             imageUrl: "/gift music.png",
             projectUrl: "https://app-music-spotify.netlify.app/",
             githubUrl: "https://github.com/jonathanDavid1/app-music",
-            technologies: ["Node js", "React", "Tailwind", "API", "Zustang"],
-            iconColor: "blue"   // Color válido
-
+            technologies: ["Node js", "React", "Tailwind", "API", "Zustand"],
         },
         {
             title: "Data Analysis with Python",
@@ -52,21 +46,23 @@ const Projects: React.FC = () => {
             projectUrl: "https://colab.research.google.com/drive/1KQplG7yKFuTgjfIPygNfcOBAstqN72jg",
             githubUrl: "https://github.com/jonathanDavid1/mi-analisis-de-datos",
             technologies: ["Python", "Pandas", "NumPy", "Matplotlib", "Seaborn"],
-            iconColor: "red",
-
-
         },
     ];
 
     return (
-        <section id="projects" className="my-8">
-            <h2 className={`text-3xl text-center font-semibold mb-8 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
-                <FormattedMessage id="projects.title" defaultMessage="Projects" />
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 md:gap-6">
-                {projects.map((project, index) => (
-                    <ProjectCard key={index} {...project} />
-                ))}
+        <section id="projects" className="my-16 py-8 relative">
+            <div className="max-w-6xl mx-auto px-4">
+                <div className="text-center mb-12">
+                    <h2 className={`text-4xl md:text-5xl font-bold tracking-tight mb-2 transition-colors duration-300 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+                        <FormattedMessage id="projects.title" defaultMessage="Projects" />
+                    </h2>
+                    <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-indigo-600 mx-auto rounded-full"></div>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {projects.map((project, index) => (
+                        <ProjectCard key={index} {...project} iconColor="" />
+                    ))}
+                </div>
             </div>
         </section>
     );

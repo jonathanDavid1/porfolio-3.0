@@ -1,6 +1,6 @@
 'use client';
-import React, { useState, useEffect, useRef } from 'react';
-import { FaGithub } from 'react-icons/fa';
+import React from 'react';
+import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
 import {
     FaReact,
     FaHtml5,
@@ -12,18 +12,27 @@ import {
     FaDocker,
     FaJava,
     FaDatabase,
+    FaServer,
+    FaLaptopCode,
+    FaGlobe,
 } from 'react-icons/fa';
 import {
     SiNextdotjs,
     SiTailwindcss,
     SiTypescript,
     SiExpress,
+    SiNetlify,
+    SiGoogle,
+    SiMongodb,
+    SiStrapi,
+    SiRedux,
+    SiPandas,
+    SiNumpy,
+    SiPostgresql,
 } from 'react-icons/si';
 import { MdOutlineSettingsInputSvideo } from "react-icons/md";
 import { useTheme } from '@/ThemeContext';
 import { FormattedMessage } from 'react-intl';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGift } from '@fortawesome/free-solid-svg-icons';
 
 interface ProjectCardProps {
     title: string;
@@ -42,161 +51,143 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
     projectUrl,
     githubUrl,
     technologies,
-    iconColor
-
 }) => {
     const { isDarkMode } = useTheme();
-    const carouselRef = useRef<HTMLDivElement>(null);
-    const [currentIndex, setCurrentIndex] = useState(0);
-    const visibleCount = 4;
-    const itemWidth = 100 / visibleCount;
-    const [isRevealed, setIsRevealed] = useState(false);
 
-    const extendedTechnologies = [...technologies, ...technologies, ...technologies.slice(0, visibleCount)];
-
-    useEffect(() => {
-        const interval = setInterval(() => {
-            setCurrentIndex((prevIndex) => (prevIndex + 1) % extendedTechnologies.length)
-        }, 2000)
-        return () => {
-            clearInterval(interval)
-        }
-    }, [extendedTechnologies.length]);
-
-    const handleMouseEnter = () => {
-        setIsRevealed(true);
-    };
-
-    const handleMouseLeave = () => {
-       // Eliminar esta función o dejarla vacía
-       // setIsRevealed(false); // Eliminar esta línea
-    };
-
-    const getIcon = (skill: string) => {
-        switch (skill) {
-            case 'HTML5':
-                return <FaHtml5 />;
-            case 'CSS3':
-                return <FaCss3 />;
-            case 'JavaScript (ES6+)':
-                return <FaJs />;
-            case 'React.js':
-                return <FaReact />;
-            case 'Next.js':
-                return <SiNextdotjs />;
-            case 'Node.js':
-                return <FaNodeJs />;
-            case 'Express.js':
-                return <SiExpress />;
-            case 'Python (Pandas, NumPy, Matplotlib, Seaborn)':
-                return <FaPython />;
-            case 'Git':
-                return <FaGitAlt />;
-            case 'Docker':
-                return <FaDocker />;
-            case 'Java':
-                return <FaJava />;
-            case 'TypeScript':
-                return <SiTypescript />;
-            case 'PostgreSQL':
-            case 'SQL':
-                return <FaDatabase />;
-            case 'Optimización SEO':
-            case 'Diseño Responsivo':
-                return <MdOutlineSettingsInputSvideo />;
+    const getIcon = (tech: string) => {
+        const cleanTech = tech.trim().toLowerCase();
+        switch (cleanTech) {
+            case 'html5':
+                return <FaHtml5 className="text-[#E34F26]" />;
+            case 'css3':
+                return <FaCss3 className="text-[#1572B6]" />;
+            case 'javascript':
+            case 'javascript (es6+)':
+                return <FaJs className="text-[#F7DF1E]" />;
+            case 'react':
+            case 'react.js':
+                return <FaReact className="text-[#61DAFB]" />;
+            case 'next.js':
+                return <SiNextdotjs className={isDarkMode ? 'text-white' : 'text-black'} />;
+            case 'node.js':
+            case 'node js':
+                return <FaNodeJs className="text-[#339933]" />;
+            case 'express':
+            case 'express.js':
+                return <SiExpress className={isDarkMode ? 'text-white' : 'text-black'} />;
+            case 'python':
+                return <FaPython className="text-[#3776AB]" />;
+            case 'git':
+                return <FaGitAlt className="text-[#F05032]" />;
+            case 'docker':
+                return <FaDocker className="text-[#2496ED]" />;
+            case 'java':
+                return <FaJava className="text-[#007396]" />;
+            case 'typescript':
+                return <SiTypescript className="text-[#3178C6]" />;
+            case 'postgresql':
+                return <SiPostgresql className="text-[#4169E1]" />;
+            case 'sql':
+            case 'database':
+                return <FaDatabase className="text-[#00758F]" />;
+            case 'seo':
+            case 'optimización seo':
+                return <SiGoogle className="text-[#4285F4]" />;
+            case 'diseño responsivo':
+                return <FaLaptopCode className="text-[#FF5722]" />;
+            case 'netlify':
+                return <SiNetlify className="text-[#00C8C8]" />;
+            case 'mongodb':
+                return <SiMongodb className="text-[#47A248]" />;
+            case 'strapi':
+                return <SiStrapi className="text-[#4945FF]" />;
+            case 'tailwind':
+            case 'tailwind css':
+                return <SiTailwindcss className="text-[#06B6D4]" />;
+            case 'api':
+            case 'rest api':
+            case 'rest apis':
+                return <FaServer className="text-[#009688]" />;
+            case 'zustang':
+            case 'zustand':
+                return <SiRedux className="text-[#764ABC]" />;
+            case 'pandas':
+                return <SiPandas className="text-[#150458]" />;
+            case 'numpy':
+                return <SiNumpy className="text-[#013243]" />;
             default:
-                return null;
+                return <MdOutlineSettingsInputSvideo className="text-gray-400" />;
         }
     };
 
     return (
-        <>
-          {/* Estilos CSS para la animación de salto */}
-          <style>
-            {`
-              @keyframes jump {
-                0% {
-                  transform: translateY(0);
-                }
-                50% {
-                  transform: translateY(-10px); /* Ajusta la altura del salto */
-                }
-                100% {
-                  transform: translateY(0);
-                }
-              }
+        <div
+            className={`group flex flex-col h-full rounded-2xl border transition-all duration-500 overflow-hidden ${
+                isDarkMode
+                    ? 'bg-gray-900/60 border-gray-800 hover:border-gray-700/80 hover:shadow-2xl hover:shadow-indigo-500/5'
+                    : 'bg-white/70 border-gray-200/80 hover:border-gray-300/80 hover:shadow-xl hover:shadow-indigo-500/5'
+            }`}
+        >
+            {/* Project Image & Overlay */}
+            <div className="relative h-52 w-full overflow-hidden bg-gray-100 dark:bg-gray-900/30 border-b border-gray-200/30 dark:border-gray-800/30">
+                <img
+                    src={imageUrl}
+                    alt={title}
+                    className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+                />
+                
+                {/* Actions Overlay */}
+                <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4 backdrop-blur-sm">
+                    <a
+                        href={projectUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-2 bg-gradient-to-r from-blue-500 to-indigo-600 text-white px-4 py-2 rounded-xl text-sm font-semibold shadow-lg shadow-blue-500/20 hover:scale-105 transition-transform duration-200"
+                    >
+                        <FaExternalLinkAlt size={14} />
+                        <FormattedMessage id="projectCard.view" defaultMessage="View Site" />
+                    </a>
+                    <a
+                        href={githubUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center justify-center bg-gray-800 text-white hover:bg-gray-700 p-2.5 rounded-xl border border-gray-700 hover:scale-105 transition-transform duration-200"
+                        title="GitHub Repository"
+                    >
+                        <FaGithub size={18} />
+                    </a>
+                </div>
+            </div>
 
-              .jump-animation {
-                animation: jump 1s infinite; /* Duración y repetición de la animación */
-              }
-            `}
-          </style>
+            {/* Project Details */}
+            <div className="p-6 flex flex-col flex-grow">
+                <h3 className={`text-xl font-bold mb-3 transition-colors duration-300 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+                    <FormattedMessage id={`projectCard.title.${title}`} defaultMessage={title} />
+                </h3>
+                <p className={`text-sm leading-relaxed mb-6 flex-grow ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+                    <FormattedMessage id={`projectCard.description.${title}`} defaultMessage={description} />
+                </p>
 
-          <div
-              className={`relative rounded-lg shadow-md overflow-hidden mb-6 transition-transform duration-300 hover:scale-105 cursor-pointer ${isDarkMode ? 'bg-gray-800' : 'bg-white'}`}
-              onMouseEnter={handleMouseEnter}
-              onMouseLeave={handleMouseLeave}
-          >
-              <div
-                  className={`absolute inset-0 flex items-center justify-center transition-opacity duration-300 ${isRevealed ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
-              >
-                  <div className={`relative w-20 h-20`}>
-                      <div className={`absolute bottom-0 w-full h-3/4`} ></div>
-                      <div className={`absolute top-0 w-full h-1/4`}></div>
-                      {/* Contenedor adicional para el icono */}
-                      <div className={`absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-5xl`}>
-                        <div className="jump-animation">
-                            <FontAwesomeIcon icon={faGift} size="5x" color={iconColor}/>
+                {/* Tech Pills */}
+                <div className="flex flex-wrap gap-2 mt-auto">
+                    {technologies.map((tech, index) => (
+                        <div
+                            key={index}
+                            className={`flex items-center gap-1.5 py-1 px-2.5 rounded-full text-xs font-semibold border transition-colors duration-300 ${
+                                isDarkMode
+                                    ? 'bg-gray-800/40 border-gray-800/60 text-gray-300 group-hover:border-gray-700/60'
+                                    : 'bg-gray-50 border-gray-100 text-gray-600 group-hover:border-gray-200'
+                            }`}
+                        >
+                            <span className="text-sm flex items-center justify-center">
+                                {getIcon(tech)}
+                            </span>
+                            <span>{tech}</span>
                         </div>
-                      </div>
-                  </div>
-              </div>
-              <div className={`p-6 flex flex-col items-center ${isRevealed ? 'opacity-100' : 'opacity-0 pointer-events-none'} transition-opacity duration-300`}>
-                  <div className="relative overflow-hidden px-4">
-                      <img src={imageUrl} alt={title} className="w-full h-56 object-contain mt-8" />
-                  </div>
-                  <h3 className={`text-xl font-semibold mb-2 text-left ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
-                      <FormattedMessage id={`projectCard.title.${title}`} defaultMessage={title} />
-                  </h3>
-                  <p className={`mb-4 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
-                      <FormattedMessage id={`projectCard.description.${title}`} defaultMessage={description} />
-                  </p>
-                  <div className="mb-4 w-full">
-                      <div className="flex space-x-4">
-                          <a href={projectUrl} target="_blank" rel="noopener noreferrer" className={`py-2 px-4 rounded-md hover:bg-primary-700 transition-colors duration-200 font-medium ${isDarkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-primary-500 text-white'}`}>
-                              <FormattedMessage id="projectCard.view" defaultMessage="View Project" />
-                          </a>
-                          <a href={githubUrl} target="_blank" rel="noopener noreferrer" className={`hover:text-primary-500 ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
-                              <FaGithub size={24} />
-                          </a>
-                      </div>
-                      <a href={projectUrl} target="_blank" rel="noopener noreferrer" className={`text-right block ${isDarkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-500 hover:text-primary-500'}`}>
-                          {projectUrl}
-                      </a>
-                  </div>
-                  <div className="overflow-hidden relative w-full">
-                      <div
-                          ref={carouselRef}
-                          className="flex w-max transition-transform duration-500 ease-in-out"
-                          style={{
-                              transform: `translateX(-${currentIndex * itemWidth}%)`,
-                              width: `${extendedTechnologies.length * itemWidth}%`,
-                          }}
-                      >
-                          {extendedTechnologies.map((tech, index) => (
-                              <div
-                                  key={index}
-                                  className={`flex-shrink-0 text-center rounded-md py-1 px-2 mr-2 flex items-center gap-2 w-1/4 ${isDarkMode ? 'bg-gray-700 text-gray-300' : 'bg-gray-200 text-gray-700'}`}
-                              >
-                                  {getIcon(tech)}
-                                  {tech}
-                              </div>
-                          ))}
-                      </div>
-                  </div>
-              </div>
-          </div>
-        </>
+                    ))}
+                </div>
+            </div>
+        </div>
     );
 };
 
